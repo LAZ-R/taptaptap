@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.6';
-// v 0.0.6 : maj courbe difficulté
+export const VERSION_NUMBER = '0.0.7';
+// v 0.0.7 : renaming icons in manifest
