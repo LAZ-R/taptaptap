@@ -101,13 +101,15 @@ const generateDotEach = (i, miliseconds) => {
             i++;
             generatedDots = i;
             if (miliseconds >= 750) { // entre 1000 et 750
-                miliseconds = miliseconds - 10;
+                miliseconds = miliseconds - 12;
             } else if (miliseconds >= 500) { // entre 750 et 500
                 miliseconds = miliseconds - 6;
             } else if (miliseconds >= 250) { // entre 500 et 250
                 miliseconds = miliseconds - 2;
-            } else if (miliseconds < 250) { // en dessous de 250
-                miliseconds = miliseconds - 1;
+            } else if (miliseconds >= 150) { // entre 250 et 250
+                miliseconds = miliseconds - .5;
+            } else if (miliseconds < 150) { // en dessous de 150
+                miliseconds = miliseconds - .1;
             } 
             generateDotEach(i, miliseconds);
         }, miliseconds);
