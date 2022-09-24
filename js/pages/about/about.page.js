@@ -2,7 +2,7 @@ import * as SERVICE_PWA from '../../services/pwa.service.js';
 import * as HEADER from '../../components/header/header.component.js'
 import * as FOOTER from '../../components/footer/footer.component.js'
 
-const pageTitle = 'Test CSS';
+const pageTitle = 'About';
 
 const renderView = () => {
 
