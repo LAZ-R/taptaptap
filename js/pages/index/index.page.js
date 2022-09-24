@@ -100,15 +100,15 @@ const generateDotEach = (i, miliseconds) => {
             generateDot(i);
             i++;
             generatedDots = i;
-            if (miliseconds >= 1000) { // 1000 +
-                miliseconds = miliseconds - 12;
-            } else if (miliseconds >= 750) { // entre 1000 et 750
-                miliseconds = miliseconds - 8;
+            if (miliseconds >= 750) { // entre 1000 et 750
+                miliseconds = miliseconds - 10;
             } else if (miliseconds >= 500) { // entre 750 et 500
-                miliseconds = miliseconds - 4;
+                miliseconds = miliseconds - 6;
             } else if (miliseconds >= 250) { // entre 500 et 250
                 miliseconds = miliseconds - 2;
-            }
+            } else if (miliseconds < 250) { // en dessous de 250
+                miliseconds = miliseconds - 1;
+            } 
             generateDotEach(i, miliseconds);
         }, miliseconds);
     }
@@ -118,7 +118,7 @@ const startGame = () => {
     document.getElementById('playingArea').innerHTML = '';
     document.getElementById('playingArea').style.justifyContent = 'flex-start';
     isRunning = true;
-    generateDotEach(generatedDots, 1250, '#00FF08');
+    generateDotEach(generatedDots, 1200, '#00FF08');
 }
 
 const gameOver = () => {
