@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.2';
-// v 0.0.2 : changement audio et taille et timing
+export const VERSION_NUMBER = '0.0.3';
+// v 0.0.3 : color by secondary + storage
