@@ -22,10 +22,10 @@ GLOBAL VARIABLES
 
     /* Primary */
     --primary: var(--gray-80);
-    --primary-hover: #5b8a78;
+    --primary-hover: var(--gray-70);
 
     /* Secondary */
-    --secondary: #446659;
+    --secondary: #40d69d;
     --secondary-hover: #4b7062;
     
     /* Font colors */
