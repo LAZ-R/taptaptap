@@ -2,22 +2,100 @@
 
 /* Put here any 'about.html' specific css */
 
-.fiftyPercent {
+.about-category {
     box-sizing: border-box;
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50%;
     min-width: 100%;
     text-align: center;
 }
 
-.topHalf {
+.top-part {
+    height: 35%;
     background-color: var(--gray-70);
     color: white;
 }
 
-.bottomHalf {
-    background-color: var(--gray-10);
+.about-sub-category {
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 100%;
+    text-align: center;
+}
+
+.about-app-infos {
+    height: 50%;
+}
+
+.about-app-name {
+    height: 70%;
+    font-size: 50px;
+    font-family: 'Roboto-Bold';
+}
+
+.about-app-version {
+    height: 30%;
+    font-size: 30px;
+    font-family: 'Roboto-Bold-Italic';
+}
+
+.middle-part {
+    height: 30%;
+    background-color: var(--lazr-red);
+    color: white;
+}
+
+.about-warning {
+    height: 40%;
+    font-size: 40px;
+    font-family: 'Roboto-Bold';
+}
+
+.about-warning-text {
+    height: 60%;
+    font-size: 16px;
+    font-family: 'Roboto-Medium';
+    padding: 0 var(--horizontal-padding) 0 var(--horizontal-padding);
+}
+
+.bottom-part {
+    height: 35%;
+    background-color: white;
+}
+
+.lazr-card {
+    height: 50%;
+    font-family: 'Roboto-Medium';
+}
+
+.links-card {
+    height: 50%;
+}
+
+.lazr-logo {
+    width: 15%;
+}
+
+.about-link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    height: 25%;
+    background-color: white;
+    box-shadow: #00000025 0 5px 20px;
+}
+
+.github-logo {
+    box-sizing: border-box;
+    height: 100%;
 }

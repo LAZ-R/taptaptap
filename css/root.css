@@ -27,6 +27,9 @@ GLOBAL VARIABLES
     /* Secondary */
     --secondary: #40d69d;
     --secondary-hover: #4b7062;
+
+    /* Special */
+    --lazr-red: #b85858;
     
     /* Font colors */
     --font-color-default: var(--gray-70);
