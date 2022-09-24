@@ -12,9 +12,10 @@ footer {
     margin: 0;
     padding: 0 var(--horizontal-padding) 0 var(--horizontal-padding);
     background-color: var(--primary);
+    color: white;
 }
 
-.footer-about-link {
+footer > a {
     color: white;
 }
 
