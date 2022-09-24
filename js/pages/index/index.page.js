@@ -9,7 +9,6 @@ let generatedDots = 1;
 let score = 0;
 let isRunning = true;
 
-var audio = new Audio('./sounds/tap.wav');
 
 const refreshScoreDisplay = () => {
     document.getElementById('scoreDisplayArea').innerHTML = score;
@@ -43,6 +42,7 @@ const generateDot = (id, colorHexCode) => {
     testDotDiv.setAttribute('class', 'dot-div');
     testDotDiv.style.backgroundColor = `${colorHexCode}`;
     testDotDiv.addEventListener('click', () => {
+        var audio = new Audio('./sounds/tap.wav');
         audio.play();
         testDotDiv.style.opacity = 0;
         setTimeout(() => {
@@ -55,7 +55,7 @@ const generateDot = (id, colorHexCode) => {
     testDotDiv.style.opacity = 0;
     testDotDiv.style.position = 'fixed';
     testDotDiv.style.left = `${UTILS.getRandomIntegerBetween(15,85)}%`;
-    testDotDiv.style.transition = 'opacity .2s linear, bottom 3.5s linear';
+    testDotDiv.style.transition = 'opacity .2s linear, bottom 3s linear';
     testDotDiv.style.bottom = '67%';
     setTimeout(() => {
         testDotDiv.style.opacity = 100;
@@ -64,7 +64,7 @@ const generateDot = (id, colorHexCode) => {
 
     setTimeout(() => {
         if (document.getElementById(`testDotDiv${id}`) !== null) {gameOver()}
-    }, 3500);
+    }, 3000);
 }
 
 const gameOver = () => {
