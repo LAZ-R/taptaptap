@@ -13,6 +13,8 @@ let score = 0;
 let isRunning = false;
 let currentMiliseconds = 1000;
 
+let previousRandom = 0;
+
 const lastScore = SERVICE_STORAGE.getPlayerLast();
 const bestScore = SERVICE_STORAGE.getPlayerBest();
 
@@ -66,6 +68,13 @@ const renderView = () => {
 }
 
 const generateDot = (id) => {
+    let randomNumber = UTILS.getRandomIntegerBetween(20,80);
+    if (id !== 1) {
+        while (randomNumber < previousRandom + 15 && randomNumber > previousRandom - 15  ) {
+            randomNumber = UTILS.getRandomIntegerBetween(20,80);
+        }
+    }
+    previousRandom = randomNumber;
     const testDotDiv = document.createElement('div');
     testDotDiv.setAttribute('id', `testDotDiv${id}`);
     testDotDiv.setAttribute('class', 'dot-div');
@@ -81,7 +90,7 @@ const generateDot = (id) => {
 
     testDotDiv.style.opacity = 0;
     testDotDiv.style.position = 'fixed';
-    testDotDiv.style.left = `${UTILS.getRandomIntegerBetween(15,85)}%`;
+    testDotDiv.style.left = `${randomNumber}%`;
     testDotDiv.style.transition = 'opacity .1s linear, bottom 3s linear';
     testDotDiv.style.bottom = '65%';
     setTimeout(() => {
