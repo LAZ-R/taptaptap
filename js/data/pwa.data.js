@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.4';
-// v 0.0.4 : lissage courbe difficulté
+export const VERSION_NUMBER = '0.0.5';
+// v 0.0.5 : icone + legere maj graphique

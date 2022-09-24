@@ -55,7 +55,7 @@ const renderView = () => {
 
     const playButton = document.createElement('button');
     playButton.setAttribute('id', 'playButton');
-    playButton.setAttribute('class', 'retry-link');
+    playButton.setAttribute('class', 'launch-button');
     playButton.addEventListener('click', () => {
         startGame();
     })
@@ -130,7 +130,7 @@ const gameOver = () => {
     const gameOverArea = document.createElement('div');
     gameOverArea.setAttribute('id', 'gameOverArea');
     gameOverArea.setAttribute('class', 'page-section section3');
-    gameOverArea.innerHTML = `<span class="game-over">GAME OVER</span><br><a href="./" class="retry-link">Retry</a>`;
+    gameOverArea.innerHTML = `<span class="game-over">GAME<br>OVER</span><br><a href="./" class="launch-button">Retry</a>`;
     document.getElementById('main').appendChild(gameOverArea);
 }
 
