@@ -1,0 +1,23 @@
+@import url("../../../css/root.css");
+
+/* Put here any 'about.html' specific css */
+
+.fiftyPercent {
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    min-width: 100%;
+    text-align: center;
+}
+
+.topHalf {
+    background-color: var(--gray-70);
+    color: white;
+}
+
+.bottomHalf {
+    background-color: var(--gray-10);
+}

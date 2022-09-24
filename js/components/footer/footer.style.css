@@ -1,0 +1,50 @@
+@import url("../../../css/footer.css");
+
+/* Put here any 'footer' specific css */
+
+footer {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--footer-height);
+    min-width: 100%;
+    margin: 0;
+    padding: 0 var(--horizontal-padding) 0 var(--horizontal-padding);
+    background-color: var(--primary);
+}
+
+.footer-about-link {
+    color: white;
+}
+
+/* ==========================
+MEDIA QUERIES
+========================== */
+
+/* Tablets ----------- */
+@media (min-width : 767px) and (max-width : 1279px) {
+    :root {
+        --footer-height: var(--tablet-footer-height);
+    }
+}
+
+/* Laptops ----------- */
+@media (min-width: 1279px) and (max-width: 1919px) {
+    :root {
+        --footer-height: var(--laptop-footer-height);
+    }
+    footer {
+        justify-content: flex-start;
+    }
+}
+
+/* Desktops ----------- */
+@media (min-width: 1920px) {
+    :root {
+        --footer-height: var(--desktop-footer-height);
+    }
+    footer {
+        justify-content: flex-start;
+    }
+}

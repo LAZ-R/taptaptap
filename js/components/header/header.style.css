@@ -1,0 +1,100 @@
+@import url("../../../css/root.css");
+
+/* Put here any 'header' specific css */
+
+header {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    min-width: 100%;
+    margin: 0;
+    padding: 0 var(--horizontal-padding) 0 var(--horizontal-padding);
+    background-color: var(--primary);
+}
+
+.header-index-link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.header-logo {
+    height: 150%;
+}
+
+.header-links-group {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.header-link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: fit-content;
+    padding: 5% 10% 5% 10%;
+    color: var(--font-color-default);
+    border-bottom: 1px solid var(--font-color-default);
+}
+.header-link:hover {
+    text-decoration: none;
+    background-color: var(--gray-20);
+}
+.header-link:focus {
+    background-color: var(--gray-20);
+}
+
+/* ==========================
+MEDIA QUERIES
+========================== */
+
+/* Tablets ----------- */
+@media (min-width : 767px) and (max-width : 1279px) {
+    :root {
+        --header-height: var(--tablet-header-height);
+    }
+}
+
+/* Laptops ----------- */
+@media (min-width: 1279px) and (max-width: 1919px) {
+    :root {
+        --header-height: var(--laptop-header-height);
+    }
+    .header-link {
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 0 10% 0 10%;
+        border-bottom: none;
+        color: white;
+    }
+        .header-link:hover {
+            background-color: var(--primary-hover);
+        }
+}
+
+/* Desktops ----------- */
+@media (min-width: 1920px) {
+    :root {
+        --header-height: var(--desktop-header-height);
+    }
+    .header-link {
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 0 10% 0 10%;
+        border-bottom: none;
+        color: white;
+    }
+        .header-link:hover {
+            background-color: var(--primary-hover);
+        }
+}

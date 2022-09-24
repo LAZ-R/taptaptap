@@ -1,0 +1,194 @@
+@import url("./fonts.css");
+
+/* ==========================
+GLOBAL VARIABLES
+========================== */
+
+:root {
+    /*----------
+        Colors
+    ----------*/
+
+    /* Gray */
+    --gray-90: #191919;
+    --gray-80: #333333;
+    --gray-70: #4d4d4d;
+    --gray-60: #666666;
+    --gray-50: #808080;
+    --gray-40: #999999;
+    --gray-30: #b3b3b3;
+    --gray-20: #cccccc;
+    --gray-10: #e6e6e6;
+
+    /* Primary */
+    --primary: var(--gray-80);
+    --primary-hover: #5b8a78;
+
+    /* Secondary */
+    --secondary: #446659;
+    --secondary-hover: #4b7062;
+    
+    /* Font colors */
+    --font-color-default: var(--gray-70);
+    --font-color-links: var(--gray-70);
+
+    --font-color-header: #ffffff;
+    --font-color-header-hover: var(--gray-10);
+    --font-color-header-click: var(--gray-20);
+
+    --font-color-footer: var(--gray-70);
+
+    /* Constant colors */
+    --html-background-color: black;
+
+    /*----------
+        Sizes
+    ----------*/
+
+    --doc-height: 100%;
+
+    /* main height */
+    --phone-main-height: 85%;
+    --tablet-main-height: 85%;
+    --laptop-main-height: 89%;
+    --desktop-main-height: 89%;
+
+    --main-height: var(--phone-main-height);
+
+    /* header height */
+    --phone-header-height: 10%;
+    --tablet-header-height: 10%;
+    --laptop-header-height: 7%;
+    --desktop-header-height: 7%;
+
+    --header-height: var(--phone-header-height);
+
+    /* footer height */
+    --phone-footer-height: 5%;
+    --tablet-footer-height: 5%;
+    --laptop-footer-height: 4%;
+    --desktop-footer-height: 4%;
+
+    --footer-height: var(--phone-footer-height);
+
+    /* Horizontal Padding */
+    --phone-horizontal-padding: 5%;
+    --tablet-horizontal-padding: 7%;
+    --laptop-horizontal-padding: 10%;
+    --desktop-horizontal-padding: 16%;
+
+    --horizontal-padding : var(--phone-horizontal-padding);
+
+    /* Button font size */
+    --phone-button-font-size: 18px;
+    --tablet-button-font-size: 16px;
+    --laptop-button-font-size: 15px;
+    --desktop-button-font-size: 14px;
+    
+    --button-font-size: var(--phone-button-font-size);
+}
+
+/* ==========================
+MAIN CONTAINERS
+========================== */
+
+html,
+body {
+ padding: 0;
+ margin: 0;
+ height: 100vh; /* fallback for Js load */
+ height: var(--doc-height);
+ background-color: var(--html-background-color);
+ font-family: 'Roboto-Regular';
+}
+
+main {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: var(--main-height);
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--font-color-default);
+}
+
+/* ==========================
+CLICKABLES
+========================== */
+
+/* Anchors */
+a {
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color: var(--font-color-links);
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:focus {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+/* Buttons */
+button {
+    box-sizing: border-box;
+    font-family: Roboto-Medium;
+    border: none;
+    background-color: var(--gray-10);
+    padding: 2% 5% 2% 5%;
+    margin: 0;
+    font-size: var(--button-font-size);
+    flex-wrap: wrap;
+    color: var(--gray-80);
+}
+
+    button:hover {
+        cursor: pointer;
+        background-color: var(--gray-20);
+    }
+
+    button:focus {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+.primary-button {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+    .primary-button:hover {
+        background-color: var(--primary-hover);
+    }
+
+/* ==========================
+MEDIA QUERIES
+========================== */
+
+/* Tablets ----------- */
+@media (min-width : 767px) and (max-width : 1279px) {
+    :root {
+        --horizontal-padding : var(--tablet-horizontal-padding);
+        --main-height: var(--tablet-main-height);
+    }
+}
+
+/* Laptops ----------- */
+@media (min-width: 1279px) and (max-width: 1919px) {
+    :root {
+        --horizontal-padding : var(--laptop-horizontal-padding);
+        --main-height: var(--laptop-main-height);
+    }
+}
+
+/* Desktops ----------- */
+@media (min-width: 1920px) {
+    :root {
+        --horizontal-padding : var(--desktop-horizontal-padding);
+        --main-height: var(--desktop-main-height);
+    }
+}

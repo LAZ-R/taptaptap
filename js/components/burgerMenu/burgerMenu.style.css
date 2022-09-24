@@ -1,0 +1,85 @@
+@import url("../../../css/root.css");
+
+/* Put here any 'burgerMenu' specific css */
+
+.header-burger-menu-button {
+    padding: 0;
+    background-color: #ffffff00;
+    color: white;
+    font-size: 32px;
+}
+.header-burger-menu-button:hover {
+    background-color: #ffffff00;
+}
+
+.burger-menu-background {
+    box-sizing: border-box;
+    position: fixed;
+    display: none;
+    top: var(--header-height);
+    right: 0;
+    height: calc(100% - calc(var(--header-height) + var(--footer-height)));
+    width: 100%;
+    background-color: black;
+    opacity: 0%;
+    transition: opacity .2s linear;
+}
+
+.burger-menu {
+    box-sizing: border-box;
+    position: fixed;
+    top: var(--header-height);
+    right: -60%;
+    height: calc(100% - calc(var(--header-height) + var(--footer-height)));
+    width: 60%;
+    background-color: var(--gray-70);
+    transition: right .2s ease-in-out;
+    overflow-y: scroll;
+}
+
+.burger-menu-link {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: fit-content;
+    padding: 5% 10% 5% 10%;
+    color: var(--gray-10);
+    border-bottom: 1px solid var(--gray-10);    
+    font-size: 16px;
+}
+.burger-menu-link:hover {
+    text-decoration: none;
+    background-color: var(--gray-20);
+}
+.burger-menu-link:focus {
+    background-color: var(--gray-20);
+}
+
+/* ==========================
+MEDIA QUERIES
+========================== */
+
+/* Tablets ----------- */
+@media (min-width : 767px) and (max-width : 1279px) {
+    .header-burger-menu-button {
+        font-size: 48px;
+    }
+    .burger-menu {
+        right: -40%;
+        width: 40%;
+    }
+    .burger-menu-link { 
+        font-size: 24px;
+    }
+}
+
+/* Laptops ----------- */
+@media (min-width: 1279px) and (max-width: 1919px) {
+    
+}
+
+/* Desktops ----------- */
+@media (min-width: 1920px) {
+    
+}
