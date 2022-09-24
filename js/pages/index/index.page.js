@@ -11,6 +11,7 @@ const pageTitle = 'Tap Tap Tap';
 let generatedDots = 1;
 let score = 0;
 let isRunning = false;
+let currentMiliseconds = 1000;
 
 const lastScore = SERVICE_STORAGE.getPlayerLast();
 const bestScore = SERVICE_STORAGE.getPlayerBest();
@@ -69,20 +70,19 @@ const generateDot = (id) => {
     testDotDiv.setAttribute('id', `testDotDiv${id}`);
     testDotDiv.setAttribute('class', 'dot-div');
     testDotDiv.addEventListener('click', () => {
-        /* var audio = new Audio('./sounds/tap.wav');
-        audio.play(); */
-        testDotDiv.style.opacity = 0;
         setTimeout(() => {
             testDotDiv.remove();
-        }, 200);
+        }, 100);
+        testDotDiv.style.opacity = 0;
         score++;
         refreshScoreDisplay();
     })
     document.getElementById('playingArea').appendChild(testDotDiv);
+
     testDotDiv.style.opacity = 0;
     testDotDiv.style.position = 'fixed';
     testDotDiv.style.left = `${UTILS.getRandomIntegerBetween(15,85)}%`;
-    testDotDiv.style.transition = 'opacity .2s linear, bottom 3s linear';
+    testDotDiv.style.transition = 'opacity .1s linear, bottom 3s linear';
     testDotDiv.style.bottom = '65%';
     setTimeout(() => {
         testDotDiv.style.opacity = 100;
@@ -111,6 +111,7 @@ const generateDotEach = (i, miliseconds) => {
             } else if (miliseconds < 150) { // en dessous de 150
                 miliseconds = miliseconds - .1;
             } 
+            currentMiliseconds = miliseconds;
             generateDotEach(i, miliseconds);
         }, miliseconds);
     }
@@ -120,7 +121,7 @@ const startGame = () => {
     document.getElementById('playingArea').innerHTML = '';
     document.getElementById('playingArea').style.justifyContent = 'flex-start';
     isRunning = true;
-    generateDotEach(generatedDots, 1200, '#00FF08');
+    generateDotEach(generatedDots, currentMiliseconds, '#00FF08');
 }
 
 const gameOver = () => {
@@ -132,8 +133,12 @@ const gameOver = () => {
     const gameOverArea = document.createElement('div');
     gameOverArea.setAttribute('id', 'gameOverArea');
     gameOverArea.setAttribute('class', 'page-section section3');
-    gameOverArea.innerHTML = `<span class="game-over">GAME<br>OVER</span><br><a href="./" class="launch-button">Retry</a>`;
+    gameOverArea.innerHTML = `<span class="game-over">GAME<br>OVER</span><br><span>${currentMiliseconds} ms</span>`;
     document.getElementById('main').appendChild(gameOverArea);
+    setTimeout(() => {
+        gameOverArea.innerHTML = `<span class="game-over">GAME<br>OVER</span><br><span>${currentMiliseconds} ms</span><br><a href="./" class="launch-button">Retry</a>`;
+    }, 3000);
+    gameOverArea.appendChild(gameOverArea);
 }
 
 HEADER.renderView();

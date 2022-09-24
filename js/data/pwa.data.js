@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.9';
-// v 0.0.9 : no sound
+export const VERSION_NUMBER = '0.0.10';
+// v 0.0.10 : change description + current ms at game over screen
