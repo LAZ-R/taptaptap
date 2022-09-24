@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.8';
-// v 0.0.8 : renaming icons in html
+export const VERSION_NUMBER = '0.0.9';
+// v 0.0.9 : no sound

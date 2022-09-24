@@ -69,8 +69,8 @@ const generateDot = (id) => {
     testDotDiv.setAttribute('id', `testDotDiv${id}`);
     testDotDiv.setAttribute('class', 'dot-div');
     testDotDiv.addEventListener('click', () => {
-        var audio = new Audio('./sounds/tap.wav');
-        audio.play();
+        /* var audio = new Audio('./sounds/tap.wav');
+        audio.play(); */
         testDotDiv.style.opacity = 0;
         setTimeout(() => {
             testDotDiv.remove();
