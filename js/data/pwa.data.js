@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.11';
-// v 0.0.11 : change spawn random
+export const VERSION_NUMBER = '0.0.12';
+// v 0.0.12 : better transitions
