@@ -127,27 +127,38 @@ const generateDotEach = (i, miliseconds) => {
 }
 
 const startGame = () => {
-    document.getElementById('playingArea').innerHTML = '';
-    document.getElementById('playingArea').style.justifyContent = 'flex-start';
-    isRunning = true;
-    generateDotEach(generatedDots, currentMiliseconds, '#00FF08');
+    document.getElementById('playButton').style.opacity = 0;
+    setTimeout(() => {
+        document.getElementById('playingArea').innerHTML = '';
+        document.getElementById('playingArea').style.justifyContent = 'flex-start';
+        isRunning = true;
+        generateDotEach(generatedDots, currentMiliseconds, '#00FF08');
+    }, 200);
 }
 
 const gameOver = () => {
-    SERVICE_STORAGE.setPlayerLast(score);
     isRunning = false;
-    document.getElementById('playingArea').innerHTML = '';
     document.getElementById('playingArea').remove();
+    SERVICE_STORAGE.setPlayerLast(score);
 
     const gameOverArea = document.createElement('div');
     gameOverArea.setAttribute('id', 'gameOverArea');
     gameOverArea.setAttribute('class', 'page-section section3');
-    gameOverArea.innerHTML = `<span class="game-over">GAME<br>OVER</span><br><span>${currentMiliseconds} ms</span>`;
+    gameOverArea.innerHTML = `<span id="gameOverText" class="game-over">GAME<br>OVER</span><br><span id="milisecondsText">${currentMiliseconds} ms</span><br><button id="retryButton" class="retry-button">Retry</a>`;
     document.getElementById('main').appendChild(gameOverArea);
+
     setTimeout(() => {
-        gameOverArea.innerHTML = `<span class="game-over">GAME<br>OVER</span><br><span>${currentMiliseconds} ms</span><br><a href="./" class="launch-button">Retry</a>`;
-    }, 3000);
-    gameOverArea.appendChild(gameOverArea);
+        document.getElementById('gameOverText').style.opacity = '100%';
+    }, 100);
+    setTimeout(() => {
+        document.getElementById('milisecondsText').style.opacity = '100%';
+    }, 1000);
+    setTimeout(() => {
+        document.getElementById('retryButton').style.opacity = '100%';
+        setTimeout(() => {
+            document.getElementById('retryButton').addEventListener('click', () => {window.location = './'});
+        }, 700);
+    }, 2500);
 }
 
 HEADER.renderView();
