@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.0.15';
-// v 0.0.15 : animations + icone
+export const VERSION_NUMBER = '0.1.0';
+// v 0.1.0 : music + sound design + lives + about page + credits

@@ -14,7 +14,7 @@
 }
 
 .top-part {
-    height: 35%;
+    height: 50%;
     background-color: var(--gray-70);
     color: white;
 }
@@ -31,56 +31,63 @@
 }
 
 .about-app-infos {
-    height: 50%;
+    height: 100%;
 }
 
 .about-app-name {
-    height: 70%;
+    height: 30%;
     font-size: 50px;
     font-family: 'Roboto-Bold';
 }
 
 .about-app-version {
-    height: 30%;
+    height: 20%;
     font-size: 30px;
     font-family: 'Roboto-Bold-Italic';
 }
 
+.about-credits {
+    height: 450%;
+    font-size: 16px;
+}
+
 .middle-part {
-    height: 30%;
+    height: 25%;
     background-color: var(--lazr-red);
     color: white;
 }
 
 .about-warning {
-    height: 40%;
-    font-size: 40px;
+    height: 30%;
+    justify-content: flex-end;
+    font-size: 30px;
     font-family: 'Roboto-Bold';
 }
 
 .about-warning-text {
-    height: 60%;
+    height: 70%;
+    justify-content: flex-start;
     font-size: 16px;
     font-family: 'Roboto-Medium';
-    padding: 0 var(--horizontal-padding) 0 var(--horizontal-padding);
+    padding: 2% var(--horizontal-padding) 0 var(--horizontal-padding);
 }
 
 .bottom-part {
-    height: 35%;
+    height: 25%;
     background-color: white;
 }
 
 .lazr-card {
-    height: 50%;
+    height: 40%;
     font-family: 'Roboto-Medium';
 }
 
-.links-card {
-    height: 50%;
+.lazr-logo {
+    width: 10%;
 }
 
-.lazr-logo {
-    width: 15%;
+.links-card {
+    height: 60%;
 }
 
 .about-link {
@@ -90,7 +97,7 @@
     align-items: center;
     text-align: center;
     width: 40%;
-    height: 25%;
+    height: 35%;
     background-color: white;
     box-shadow: #00000025 0 5px 20px;
 }

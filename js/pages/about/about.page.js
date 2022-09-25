@@ -15,6 +15,20 @@ const renderView = () => {
     `<div class="about-sub-category about-app-infos">
         <span class="about-sub-category about-app-name">Tap Tap Tap</span>
         <span class="about-sub-category about-app-version">v${SERVICE_PWA.getAppVersionNumber()}</span>
+        <div class="about-sub-category about-credits">
+            <span>
+                <b>Background Music</b><br>
+                8 Bit Surf - By David Renda<br>
+                https://www.FesliyanStudios.com
+            </span>
+            <span>
+                <b>Sound design</b><br>
+                Videogame Death Sound - by Fupicat<br>
+                Game UI sounds - by Bertsz<br>
+                Game Start - by plasterbrain<br>
+                https://pixabay.com/
+            </span>
+        </div>
     </div>`;
     
     document.getElementById('main').appendChild(topPart);
@@ -27,8 +41,8 @@ const renderView = () => {
         <span>Warning</span>
     </div>
     <div class="about-sub-category about-warning-text">
-        <p>It is important to notice than this app uses your device local storage to persist data.<br>
-        All this app data will be lost if you clean your cache.</p>
+        <span>It is important to notice than this app uses your device local storage to persist data.<br>
+        All this app data will be lost if you clean your cache.</span>
     </div>`;
     
     document.getElementById('main').appendChild(middlePart);

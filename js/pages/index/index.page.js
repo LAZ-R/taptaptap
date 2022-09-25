@@ -9,6 +9,7 @@ SERVICE_STORAGE.checkFirstTime();
 const pageTitle = 'Tap Tap Tap';
 
 let generatedDots = 1;
+let lives = 3;
 let score = 0;
 let isRunning = false;
 let currentMiliseconds = 1000;
@@ -18,8 +19,24 @@ let previousRandom = 0;
 const lastScore = SERVICE_STORAGE.getPlayerLast();
 const bestScore = SERVICE_STORAGE.getPlayerBest();
 
+const music = new Audio('./sounds/music.mp3');
+
 const refreshScoreDisplay = () => {
     document.getElementById('currentScore').innerHTML = score;
+}
+
+const setLivesDisplay = () => {
+    const display = document.getElementById('currentLivesArea');
+    display.style.webkitAnimationPlayState = "running";
+    display.innerHTML = `
+        <span id="life03" class="life-display ${lives < 3 ? 'life-empty' : 'life-full'}"></span>
+        <span id="life02" class="life-display ${lives < 2 ? 'life-empty' : 'life-full'}"></span>
+        <span id="life01" class="life-display ${lives < 1 ? 'life-empty' : 'life-full'}"></span>
+    `;
+    setTimeout(() => {
+        display.style.webkitAnimationPlayState = "paused";
+    }, 1500);
+    if (lives == 0) gameOver();
 }
 
 const renderView = () => {
@@ -42,9 +59,13 @@ const renderView = () => {
                 <span id="bestScore">${bestScore} pts</span>
             </div>
         </div>
-        <div id="currentScoreArea" class="current-score-area">
-            <span id="currentScore">0</span>
-            <span>pts</span>
+        <div id="currentScoresArea" class="current-scores-area">
+            <div id="currentScoreArea" class="current-score-area">
+                <span id="currentScore">0</span>
+                <span>pts</span>
+            </div>
+            <div id="currentLivesArea" class="current-lives-area">
+            </div>
         </div>
     `;
     
@@ -68,69 +89,82 @@ const renderView = () => {
 }
 
 const generateDot = (id) => {
-    let randomPosition = UTILS.getRandomIntegerBetween(20,80);
-    let randomIsBad = UTILS.getRandomIntegerBetween(0,100);
-    const isGoodDot = randomIsBad < 90;
-    if (id !== 1) {
-        while (randomPosition < previousRandom + 15 && randomPosition > previousRandom - 15) {
-            randomPosition = UTILS.getRandomIntegerBetween(20,80);
-        }
-    }
-    previousRandom = randomPosition;
-    const testDotDiv = document.createElement('div');
-    testDotDiv.setAttribute('id', `testDotDiv${id}`);
-    testDotDiv.setAttribute('class', 'dot-div');
-    if (isGoodDot) {
-        testDotDiv.addEventListener('click', () => {
-            setTimeout(() => {
-                testDotDiv.remove();
-            }, 100);
-            testDotDiv.style.animation = 'pulseDot .1s';
-            testDotDiv.style.opacity = 0;
-            testDotDiv.style.backgroundColor = 'var(--gray-60)';
-            score++;
-            refreshScoreDisplay();
-        });
-    } else {
-        testDotDiv.style.backgroundColor = 'var(--lazr-red)';
-        testDotDiv.addEventListener('click', () => {
-            setTimeout(() => {
-                testDotDiv.remove();
-            }, 100);
-            testDotDiv.style.animation = 'pulseDot .1s';
-            testDotDiv.style.opacity = 0;
-            testDotDiv.style.backgroundColor = 'var(--gray-60)';
-            score--;
-            refreshScoreDisplay();
-        });
-    }
-    
-    document.getElementById('playingArea').appendChild(testDotDiv);
-
-    testDotDiv.style.opacity = 0;
-    testDotDiv.style.position = 'fixed';
-    testDotDiv.style.left = `${randomPosition}%`;
-    testDotDiv.style.transition = 'opacity .1s linear, bottom 3s linear, height .1s linear, width .1s linear';
-    testDotDiv.style.bottom = '65%';
-    setTimeout(() => {
-        testDotDiv.style.opacity = 100;
-        testDotDiv.style.bottom = 'var(--footer-height)';        
-    }, 20);
-
-    setTimeout(() => {
-        if (isGoodDot) {
-            if (document.getElementById(`testDotDiv${id}`) !== null) {
-                gameOver();
+    if (isRunning) {
+        let randomPosition = UTILS.getRandomIntegerBetween(20,80);
+        let randomIsBad = UTILS.getRandomIntegerBetween(0,100);
+        const isGoodDot = randomIsBad < 90;
+        if (id !== 1) {
+            while (randomPosition < previousRandom + 15 && randomPosition > previousRandom - 15) {
+                randomPosition = UTILS.getRandomIntegerBetween(20,80);
             }
-        } else {
-            setTimeout(() => {
-                testDotDiv.remove();
-            }, 100);
-            testDotDiv.style.animation = 'disappearDot .25s';
-            testDotDiv.style.opacity = 0;
-            testDotDiv.style.backgroundColor = 'var(--gray-60)';
         }
-    }, 3000);
+        previousRandom = randomPosition;
+        const testDotDiv = document.createElement('div');
+        testDotDiv.setAttribute('id', `testDotDiv${id}`);
+        testDotDiv.setAttribute('class', 'dot-div');
+        if (isGoodDot || id === 1) {
+            testDotDiv.addEventListener('click', () => {
+                if (isRunning ){
+                    setTimeout(() => {
+                        testDotDiv.remove();
+                    }, 100);
+                    testDotDiv.style.animation = 'pulseDot .1s';
+                    testDotDiv.style.opacity = 0;
+                    testDotDiv.style.backgroundColor = 'var(--gray-60)';
+                    score++;
+                    refreshScoreDisplay();
+                }
+            });
+        } else {
+            testDotDiv.style.backgroundColor = 'var(--bad-red)';
+            testDotDiv.addEventListener('click', () => {
+                if (isRunning) {
+                    new Audio('./sounds/wrongDot.mp3').play();
+                    setTimeout(() => {
+                        testDotDiv.remove();
+                    }, 100);
+                    testDotDiv.style.animation = 'pulseDot .1s';
+                    testDotDiv.style.opacity = 0;
+                    testDotDiv.style.backgroundColor = 'var(--gray-60)';
+                    score--;
+                    refreshScoreDisplay();
+                    lives--;
+                    setLivesDisplay();
+                }
+            });
+        }
+        
+        document.getElementById('playingArea').appendChild(testDotDiv);
+
+        testDotDiv.style.opacity = 0;
+        testDotDiv.style.position = 'fixed';
+        testDotDiv.style.left = `${randomPosition}%`;
+        testDotDiv.style.transition = 'opacity .1s linear, bottom 3s linear';
+        testDotDiv.style.bottom = '65%';
+        setTimeout(() => {
+            testDotDiv.style.opacity = 100;
+            testDotDiv.style.bottom = 'var(--footer-height)';        
+        }, 20);
+
+        setTimeout(() => {
+            if (isRunning) {
+                if (isGoodDot) {
+                    if (document.getElementById(`testDotDiv${id}`) !== null) {
+                        gameOver();
+                    }
+                } else {
+                    setTimeout(() => {
+                        testDotDiv.remove();
+                    }, 100);
+                    testDotDiv.style.animation = 'disappearDot .25s';
+                    testDotDiv.style.opacity = 0;
+                    testDotDiv.style.backgroundColor = 'var(--gray-60)';
+                    score++;
+                    refreshScoreDisplay();
+                }
+            }
+        }, 3000);
+    }
 }
 
 const generateDotEach = (i, miliseconds) => {
@@ -158,6 +192,13 @@ const generateDotEach = (i, miliseconds) => {
 
 const startGame = () => {
     document.getElementById('playButton').style.opacity = 0;
+    new Audio('./sounds/start.mp3').play();
+    setTimeout(() => {
+        music.play();
+        music.volume = 0.75;
+        music.loop = true;
+    }, 1000);
+    setLivesDisplay();
     setTimeout(() => {
         document.getElementById('playingArea').innerHTML = '';
         document.getElementById('playingArea').style.justifyContent = 'flex-start';
@@ -169,13 +210,24 @@ const startGame = () => {
 const gameOver = () => {
     isRunning = false;
     document.getElementById('playingArea').remove();
-    SERVICE_STORAGE.setPlayerLast(score);
 
     const gameOverArea = document.createElement('div');
     gameOverArea.setAttribute('id', 'gameOverArea');
     gameOverArea.setAttribute('class', 'page-section section3');
-    gameOverArea.innerHTML = `<span id="gameOverText" class="game-over">GAME<br>OVER</span><br><span id="milisecondsText">${currentMiliseconds} ms</span><br><button id="retryButton" class="retry-button">Retry</a>`;
+    gameOverArea.innerHTML = `
+        <span id="gameOverText" class="game-over">GAME<br>OVER</span><br>
+        <span id="milisecondsText">${UTILS.roundTo(currentMiliseconds, 2)} ms</span><br>
+        <button id="retryButton" class="retry-button">Retry</a>
+    `;
     document.getElementById('main').appendChild(gameOverArea);
+
+    new Audio('./sounds/end.mp3').play();
+    music.pause();
+    
+    SERVICE_STORAGE.setPlayerLast(score);
+    if (score > bestScore) {
+        document.getElementById('currentScore').style.animation = 'flash .5s linear infinite';
+    }
 
     setTimeout(() => {
         document.getElementById('gameOverText').style.opacity = '100%';
@@ -186,7 +238,7 @@ const gameOver = () => {
     setTimeout(() => {
         document.getElementById('retryButton').style.opacity = '100%';
         setTimeout(() => {
-            document.getElementById('retryButton').addEventListener('click', () => {window.location = './'});
+            document.getElementById('retryButton').addEventListener('click', () => { window.location = './' });
         }, 700);
     }, 2500);
 }

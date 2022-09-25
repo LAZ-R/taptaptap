@@ -47,17 +47,18 @@
     font-family: 'Roboto-Bold';
 }
 
-.last-score {
+/* .last-score {
     
-}
+} */
 
-.best-score {
+/* .best-score {
 
-}
+} */
 
-.current-score-area {
+.current-scores-area {
     box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 70%;
@@ -65,10 +66,49 @@
     font-family: 'Roboto-Black';
 }
 
+.current-score-area {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    font-family: 'Roboto-Black';
+}
+
 #currentScore {
-    font-size: 40px;
+    font-size: 50px;
     color: var(--secondary);
-    padding-right: 5px;
+    padding-right: 10px;
+}
+
+.current-lives-area {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 40%;
+    font-family: 'Roboto-Black';
+    animation: flash .5s linear infinite;
+}
+
+.life-display {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    margin: 5% 5% 5% 5%;
+    border-radius: 50%;
+}
+
+.life-full {
+    background-color: var(--secondary);
+}
+.life-empty {
+    background-color: var(--primary);
 }
 
 .section2 {
@@ -113,33 +153,6 @@
     animation: appearDot .25s;
 }
 
-@keyframes appearDot {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-}
-
-@keyframes pulseDot {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.75);
-    }
-}
-
-@keyframes disappearDot {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(0);
-    }
-}
-
 .section3 {
     height: 80%;
     background-color: var(--gray-90);
@@ -153,7 +166,7 @@
     align-items: center;
     font-family: 'Roboto-Black';
     font-size: 60px;
-    color: #dd5e5e;
+    color: var(--bad-red);
     padding: 20px;
     text-align: center;
     opacity: 0;
@@ -185,4 +198,44 @@
 }
 .retry-button:focus {
     background-color: var(--secondary);
+}
+
+/* Animations */
+
+@keyframes appearDot {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+}
+
+@keyframes pulseDot {
+    from {
+      transform: scale(1);
+      animation-timing-function: ease-out;
+    }
+    to {
+      transform: scale(1.75);
+      animation-timing-function: ease-out;
+    }
+}
+
+@keyframes disappearDot {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0);
+    }
+}
+
+@keyframes flash {
+    from {
+      opacity: 100;
+    }
+    to {
+      opacity: 0;
+    }
 }

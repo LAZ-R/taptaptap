@@ -17,6 +17,7 @@ footer {
 
 footer > a {
     color: white;
+    padding-left: 4px;
 }
 
 /* ==========================
