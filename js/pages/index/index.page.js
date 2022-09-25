@@ -20,6 +20,9 @@ const lastScore = SERVICE_STORAGE.getPlayerLast();
 const bestScore = SERVICE_STORAGE.getPlayerBest();
 
 const music = new Audio('./sounds/music.mp3');
+const startSound = new Audio('./sounds/start.mp3');
+const endSound = new Audio('./sounds/end.mp3');
+const wrongDotSound = new Audio('./sounds/wrongDot.mp3');
 
 const refreshScoreDisplay = () => {
     document.getElementById('currentScore').innerHTML = score;
@@ -119,7 +122,7 @@ const generateDot = (id) => {
             testDotDiv.style.backgroundColor = 'var(--bad-red)';
             testDotDiv.addEventListener('click', () => {
                 if (isRunning) {
-                    new Audio('./sounds/wrongDot.mp3').play();
+                    wrongDotSound.play();
                     setTimeout(() => {
                         testDotDiv.remove();
                     }, 100);
@@ -192,7 +195,7 @@ const generateDotEach = (i, miliseconds) => {
 
 const startGame = () => {
     document.getElementById('playButton').style.opacity = 0;
-    new Audio('./sounds/start.mp3').play();
+    startSound.play();
     setTimeout(() => {
         music.play();
         music.volume = 0.75;
@@ -221,8 +224,8 @@ const gameOver = () => {
     `;
     document.getElementById('main').appendChild(gameOverArea);
 
-    new Audio('./sounds/end.mp3').play();
     music.pause();
+    endSound.play();
     
     SERVICE_STORAGE.setPlayerLast(score);
     if (score > bestScore) {
