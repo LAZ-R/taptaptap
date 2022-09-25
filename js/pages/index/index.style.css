@@ -110,7 +110,34 @@
     border: 8px solid #ffffffd5;
     background-color: var(--secondary);
     transition: opacity .2s linear;
-    /* box-shadow: 0 -10px 20px #ffffff21; */
+    animation: appearDot .25s;
+}
+
+@keyframes appearDot {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+}
+
+@keyframes pulseDot {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.75);
+    }
+}
+
+@keyframes disappearDot {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0);
+    }
 }
 
 .section3 {

@@ -68,30 +68,49 @@ const renderView = () => {
 }
 
 const generateDot = (id) => {
-    let randomNumber = UTILS.getRandomIntegerBetween(20,80);
+    let randomPosition = UTILS.getRandomIntegerBetween(20,80);
+    let randomIsBad = UTILS.getRandomIntegerBetween(0,100);
+    const isGoodDot = randomIsBad < 90;
     if (id !== 1) {
-        while (randomNumber < previousRandom + 15 && randomNumber > previousRandom - 15  ) {
-            randomNumber = UTILS.getRandomIntegerBetween(20,80);
+        while (randomPosition < previousRandom + 15 && randomPosition > previousRandom - 15) {
+            randomPosition = UTILS.getRandomIntegerBetween(20,80);
         }
     }
-    previousRandom = randomNumber;
+    previousRandom = randomPosition;
     const testDotDiv = document.createElement('div');
     testDotDiv.setAttribute('id', `testDotDiv${id}`);
     testDotDiv.setAttribute('class', 'dot-div');
-    testDotDiv.addEventListener('click', () => {
-        setTimeout(() => {
-            testDotDiv.remove();
-        }, 100);
-        testDotDiv.style.opacity = 0;
-        score++;
-        refreshScoreDisplay();
-    })
+    if (isGoodDot) {
+        testDotDiv.addEventListener('click', () => {
+            setTimeout(() => {
+                testDotDiv.remove();
+            }, 100);
+            testDotDiv.style.animation = 'pulseDot .1s';
+            testDotDiv.style.opacity = 0;
+            testDotDiv.style.backgroundColor = 'var(--gray-60)';
+            score++;
+            refreshScoreDisplay();
+        });
+    } else {
+        testDotDiv.style.backgroundColor = 'var(--lazr-red)';
+        testDotDiv.addEventListener('click', () => {
+            setTimeout(() => {
+                testDotDiv.remove();
+            }, 100);
+            testDotDiv.style.animation = 'pulseDot .1s';
+            testDotDiv.style.opacity = 0;
+            testDotDiv.style.backgroundColor = 'var(--gray-60)';
+            score--;
+            refreshScoreDisplay();
+        });
+    }
+    
     document.getElementById('playingArea').appendChild(testDotDiv);
 
     testDotDiv.style.opacity = 0;
     testDotDiv.style.position = 'fixed';
-    testDotDiv.style.left = `${randomNumber}%`;
-    testDotDiv.style.transition = 'opacity .1s linear, bottom 3s linear';
+    testDotDiv.style.left = `${randomPosition}%`;
+    testDotDiv.style.transition = 'opacity .1s linear, bottom 3s linear, height .1s linear, width .1s linear';
     testDotDiv.style.bottom = '65%';
     setTimeout(() => {
         testDotDiv.style.opacity = 100;
@@ -99,7 +118,18 @@ const generateDot = (id) => {
     }, 20);
 
     setTimeout(() => {
-        if (document.getElementById(`testDotDiv${id}`) !== null) {gameOver()}
+        if (isGoodDot) {
+            if (document.getElementById(`testDotDiv${id}`) !== null) {
+                gameOver();
+            }
+        } else {
+            setTimeout(() => {
+                testDotDiv.remove();
+            }, 100);
+            testDotDiv.style.animation = 'disappearDot .25s';
+            testDotDiv.style.opacity = 0;
+            testDotDiv.style.backgroundColor = 'var(--gray-60)';
+        }
     }, 3000);
 }
 
