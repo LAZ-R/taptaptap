@@ -9,7 +9,7 @@ export const renderView = () => {
     headerIndexLink.setAttribute('class', 'header-index-link');
 
     const headerLogo = document.createElement('img');
-    headerLogo.setAttribute('src', './images/logo-blanc.svg');
+    headerLogo.setAttribute('src', './images/logo-white.svg');
     headerLogo.setAttribute('alt', 'lazr logo');
     headerLogo.setAttribute('class', 'header-logo');
     headerLogo.addEventListener('click', () => {

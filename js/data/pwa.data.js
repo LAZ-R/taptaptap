@@ -4,5 +4,5 @@ export const MAX_SCREEN_SIZE = {
     Laptop: 1919
 }
 
-export const VERSION_NUMBER = '0.1.1';
-// v 0.1.1 : sound optimization
+export const VERSION_NUMBER = '0.1.2';
+// v 0.1.2 : header svg logo
